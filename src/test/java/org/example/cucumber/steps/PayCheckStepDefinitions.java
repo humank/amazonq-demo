@@ -7,6 +7,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.And;
 import org.example.CreditCard;
 import org.example.CreditCardService;
+import org.example.Invoice;
 
 import java.util.List;
 import java.util.Map;
@@ -27,9 +28,7 @@ public class PayCheckStepDefinitions {
 
     @Given("the customer enters a {long} card number, expiry year {int}, month {string}, and security code {int}")
     public void the_customer_enters_a_card_number_expiry_year_month_and_security_code(Long cardNumber, Integer expiryYear, String expiryMonth, Integer securityCode) {
-        // Write code here that turns the phrase above into concrete actions
-        //throw new io.cucumber.java.PendingException();
-        creditCard = new CreditCard(cardNumber, expiryYear, Integer.valueOf(expiryMonth), securityCode);
+        creditCard = new CreditCard(cardNumber, expiryYear, Integer.parseInt(expiryMonth), securityCode);
     }
 
     @When("the system checks the card number, expiry date, and security code")
@@ -48,14 +47,16 @@ public class PayCheckStepDefinitions {
         assert hasCreditStatus;
     }
 
-    @Then("the system should issue an invoice")
-    public void theSystemShouldIssueAnInvoice() {
+    @Then("the system should issue an invoice with transaction amount {double}")
+    public void theSystemShouldIssueAnInvoice(double transactionAmount) {
         // Logic to issue an invoice
+        Invoice invoice = CreditCardService.issueInvoice(creditCard,transactionAmount);
     }
 
     @And("the invoice should contain the transaction date, time, card number")
     public void theInvoiceShouldContainTheTransactionDateTimeCardNumber() {
         // Logic to verify invoice contents
+
     }
 
     @Then("the system should validate the credit card information as expired")

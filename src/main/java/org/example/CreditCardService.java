@@ -16,6 +16,10 @@ public class CreditCardService {
         this.creditCardData = creditCardData;
     }
 
+    public static Invoice issueInvoice(CreditCard creditCard, double transactionAmount) {
+        return new Invoice(creditCard,transactionAmount);
+    }
+
     public boolean validateCreditCard(CreditCard creditCard) {
         // Validate credit card information
         return isCreditCardValid(creditCard);
