@@ -22,8 +22,8 @@ public class OrderCoffee {
         isToGo = true;
     }
 
-    @When("the customer orders {int} Americanos")
-    public void the_customer_orders_americanos(int count) {
+    @When("the customer orders {int} Americano")
+    public void the_customer_orders_americano(int count) {
         orderedCoffees = new ArrayList<>();
         for (int i = 0; i < count; i++) {
             orderedCoffees.add(CoffeeOrderingSystem.AMERICANO);
