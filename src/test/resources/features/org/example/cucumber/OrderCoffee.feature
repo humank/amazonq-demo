@@ -17,7 +17,7 @@ Feature: Order Coffee
 
   Scenario: Customer orders multiple coffees
     Given the customer wants to order coffee to-go
-    When the customer orders 3 Americanos
+    When the customer orders 3 Americano
     Then the customer should receive a 15% discount
     And the total cost should be $25.50 USD
     
