@@ -17,7 +17,7 @@ public class CreditCardService {
     }
 
     public static Invoice issueInvoice(CreditCard creditCard, double transactionAmount) {
-        return new Invoice(creditCard,transactionAmount);
+        return new Invoice(creditCard, transactionAmount);
     }
 
     public boolean validateCreditCard(CreditCard creditCard) {
@@ -30,12 +30,24 @@ public class CreditCardService {
         return getCreditCardData(creditCard).get("hasCredit").equalsIgnoreCase("true");
     }
 
+
     public String getValidationMessage(CreditCard creditCard) {
+        StringBuilder validationMessage = new StringBuilder();
+
         if (!isCreditCardValid(creditCard)) {
-            return "Card expired";
+            validationMessage.append("Card expired");
         }
-        return "";
+
+        if (hasInsufficientFunds(creditCard)) {
+            if (validationMessage.length() > 0) {
+                validationMessage.append(" | ");
+            }
+            validationMessage.append("Insufficient funds");
+        }
+
+        return validationMessage.toString();
     }
+
 
     public boolean hasInsufficientFunds(CreditCard creditCard) {
         // Check for insufficient funds

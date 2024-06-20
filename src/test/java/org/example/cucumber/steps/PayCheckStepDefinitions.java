@@ -68,7 +68,7 @@ public class PayCheckStepDefinitions {
     @And("the system should decline the transaction with an error message {string}")
     public void theSystemShouldDeclineTheTransactionWithAnErrorMessage(String errorMessage) {
         assert !isCardValid;
-        assert validationMessage.equals(errorMessage);
+        assert validationMessage.contains(errorMessage);
     }
 
     @And("the system checks with the credit card center for the available funds")
@@ -80,6 +80,6 @@ public class PayCheckStepDefinitions {
     @Then("the system should validate the credit card information as having insufficient funds")
     public void theSystemShouldValidateTheCreditCardInformationAsHavingInsufficientFunds() {
         validationMessage = creditCardService.getValidationMessage(creditCard);
-        assert validationMessage.equals("Insufficient funds");
+        assert validationMessage.contains("Insufficient funds");
     }
 }
