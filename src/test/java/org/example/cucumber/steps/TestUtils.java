@@ -2,7 +2,7 @@ package org.example.cucumber.steps;
 
 import java.util.ArrayList; 
 import java.util.List;
-import org.example.CoffeeOrderingSystem;
+import org.example.CoffeeOrdering;
 
 public class TestUtils {
 
@@ -15,6 +15,6 @@ public class TestUtils {
     }
     
     public static double calculateTotalCost(List<String> orderedCoffees, boolean isToGo) {
-        return CoffeeOrderingSystem.calculateTotalCost(orderedCoffees, isToGo);
+        return CoffeeOrdering.calculateTotalCost(orderedCoffees, isToGo);
     }
 }

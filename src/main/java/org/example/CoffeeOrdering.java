@@ -2,7 +2,7 @@ package org.example;
 
 import java.util.List;
 
-public class CoffeeOrderingSystem {
+public class CoffeeOrdering {
 
     public static final String AMERICANO = "Americano";
     public static final String LATTE = "Latte";
