@@ -86,13 +86,18 @@ public class BookAnOffice {
 
         Map<String, String> expectedAttributes = data.get(0);
 
-        assertInstanceOf(String.class, event.getBookingId());
-        //assertEquals(expectedAttributes.get("bookingId"), event.getBookingId());
-
+        assertTrue(isValidUUID(expectedAttributes.get("bookingId")));
         assertEquals( Integer.parseInt(expectedAttributes.get("officeId")), event.getOfficeId());
         assertEquals(transformDate(expectedAttributes.get("startDate")), event.getStartDate());
         assertEquals(transformDate(expectedAttributes.get("endDate")), event.getEndDate());
         assertEquals(expectedAttributes.get("userId"), event.getUserId());
+    }
+
+    // validate the data string see if it is an UUID format
+    private boolean isValidUUID(String str) {
+        // Regular expression pattern for UUID format
+        String pattern = "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$";
+        return str.matches(pattern);
     }
 
     // transform the date string into a LocalDate object
