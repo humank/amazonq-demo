@@ -12,12 +12,13 @@ Feature: Office Booking System
 
   Scenario: Book an Office
     Given The user selects an available office
-    And The user provides valid payment information
+    And The user provides valid payment information with the following details:
+      | cardNumber       | expiryDate | cvv | userId       |
+      | 4111111111111111 | 12/24      | 123 | Test_User_Id |
     When The user submits a booking request
     Then The system creates a new booking record
     And The system triggers the "OfficeBookedEvent" domain event
     And The "OfficeBookedEvent" event contains the following attributes:
-      | Attribute  | Value                  |
-      | bookingId  | [generated booking ID] |
-      | officeId   | [selected office ID]   |
-      | userId     | [user ID]              |
+      | officeId  | bookingId                            | startDate  | endDate    | userId       |
+      | 1         | 019bf648-bbec-4aca-a13b-ac04d07cb3a6 | 2023-06-01 | 2023-06-05 | Test_User_Id |
+

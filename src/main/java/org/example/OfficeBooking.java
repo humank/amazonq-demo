@@ -41,7 +41,7 @@ public class OfficeBooking {
         BookingRecord bookingRecord = new BookingRecord(bookingId, String.valueOf(officeId), "userId", startDate, endDate, paymentInfo);
         bookingRecords.put(bookingId, bookingRecord);
         
-        OfficeBookedEvent event = new OfficeBookedEvent(officeId, bookingId, startDate, endDate);
+        OfficeBookedEvent event = new OfficeBookedEvent(officeId, bookingId, startDate, endDate, paymentInfo.getUserId());
         eventHandler.handleEvent(event);
         
         return bookingId;

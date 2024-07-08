@@ -9,11 +9,12 @@ public class OfficeBookedEvent {
     private LocalDate endDate;
     private String userId;
 
-    public OfficeBookedEvent(int officeId, String bookingId, LocalDate startDate, LocalDate endDate) {
+    public OfficeBookedEvent(int officeId, String bookingId, LocalDate startDate, LocalDate endDate, String userId) {
         this.officeId = officeId;
         this.bookingId = bookingId;
         this.startDate = startDate;
         this.endDate = endDate;
+        this.userId = userId;
     }
 
     public int getOfficeId() {
