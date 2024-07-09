@@ -9,16 +9,9 @@ public class Office {
         return availabilityStartDate;
     }
 
-    public void setAvailabilityStartDate(LocalDate availabilityStartDate) {
-        this.availabilityStartDate = availabilityStartDate;
-    }
 
     public LocalDate getAvailabilityEndDate() {
         return availabilityEndDate;
-    }
-
-    public void setAvailabilityEndDate(LocalDate availabilityEndDate) {
-        this.availabilityEndDate = availabilityEndDate;
     }
 
     private LocalDate availabilityStartDate;

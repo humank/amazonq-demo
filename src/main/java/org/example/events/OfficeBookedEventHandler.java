@@ -10,8 +10,6 @@ public class OfficeBookedEventHandler implements EventHandler {
     public void handleEvent(Object event) {
         if (event instanceof OfficeBookedEvent) {
             events.add((OfficeBookedEvent) event);
-            assert events.size() >0;
-
         }
     }
 
