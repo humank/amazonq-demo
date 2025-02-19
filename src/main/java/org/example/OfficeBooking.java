@@ -32,18 +32,28 @@ public class OfficeBooking {
                 .filter(o -> o.getId() == officeId)
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("Invalid office ID"));
-        
+
+        LocalDate tpeRegionLaunchDate = LocalDate.of(2025, 5, 20);
+        long rentalDays = endDate.toEpochDay() - startDate.toEpochDay() + 1;
+        double discount = 1.0;
+
+        if (startDate.isAfter(tpeRegionLaunchDate) && rentalDays > 3) {
+            discount = 0.5;
+        }
+
         if (!office.isAvailable(startDate, endDate)) {
             throw new IllegalStateException("Office is not available for the given dates");
         }
         
+        double totalCost = office.calculateRentalCost(startDate, endDate) * discount;
+
         String bookingId = UUID.randomUUID().toString();
-        BookingRecord bookingRecord = new BookingRecord(bookingId, String.valueOf(officeId), "userId", startDate, endDate, paymentInfo);
+        BookingRecord bookingRecord = new BookingRecord(bookingId, String.valueOf(officeId), "userId", startDate, endDate, paymentInfo, totalCost);
         bookingRecords.put(bookingId, bookingRecord);
-        
-        OfficeBookedEvent event = new OfficeBookedEvent(officeId, bookingId, startDate, endDate, paymentInfo.getUserId());
+
+        OfficeBookedEvent event = new OfficeBookedEvent(officeId, bookingId, startDate, endDate, paymentInfo.getUserId(), totalCost);
         eventHandler.handleEvent(event);
-        
+
         return bookingId;
     }
     

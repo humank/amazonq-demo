@@ -20,7 +20,7 @@ public class OfficeBookedEventHandler implements EventHandler {
     }
 
     @Override
-    public Object getLastEvent(String eventName) {
+    public OfficeBookedEvent getLastEvent(String eventName) {
         return events.stream()
                 .filter(event -> event.getClass().getSimpleName().equals(eventName))
                 .reduce((first, second) -> second)

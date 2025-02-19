@@ -8,13 +8,15 @@ public class OfficeBookedEvent {
     private LocalDate startDate;
     private LocalDate endDate;
     private String userId;
+    private double totalCost;
 
-    public OfficeBookedEvent(int officeId, String bookingId, LocalDate startDate, LocalDate endDate, String userId) {
+    public OfficeBookedEvent(int officeId, String bookingId, LocalDate startDate, LocalDate endDate, String userId, double totalCost) {
         this.officeId = officeId;
         this.bookingId = bookingId;
         this.startDate = startDate;
         this.endDate = endDate;
         this.userId = userId;
+        this.totalCost = totalCost;
     }
 
     public int getOfficeId() {
@@ -35,5 +37,9 @@ public class OfficeBookedEvent {
 
     public String getUserId() {
         return userId;
+    }
+
+    public double getTotalCost() {
+        return totalCost;
     }
 }
